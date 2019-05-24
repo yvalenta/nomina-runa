@@ -53,7 +53,6 @@ class AsistenciasController < ApplicationController
   # PATCH/PUT /asistencias/1.json
   def update
     respond_to do |format|
-      oe
       @asistencia.counter =  @asistencia.salida - @asistencia.entrada
       if @asistencia.update(asistencia_params)
         format.html { redirect_to empleado_asistencias_path(@user, @asistencia), notice: 'Asistencia was successfully updated.' }
