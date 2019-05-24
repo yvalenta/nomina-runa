@@ -8,6 +8,7 @@ class AsistenciasController < ApplicationController
     @asistencias = Asistencia.where(user_id: @user.id)
     best_employee = Asistencia.get_best_employee
     worst_employee = Asistencia.get_worst_employee
+
     if (!best_employee.blank? && !worst_employee.blank?)
       @get_best_employee = User.get_user(best_employee.keys[0])
       @get_worst_employee = User.get_user(worst_employee.keys[0])
@@ -36,7 +37,7 @@ class AsistenciasController < ApplicationController
   def create
     @asistencia = Asistencia.new(asistencia_params)
     @asistencia.user_id = @user.id
-
+    @asistencia.counter =  @asistencia.salida - @asistencia.entrada
     respond_to do |format|
       if @asistencia.save
         format.html { redirect_to empleado_asistencias_path(@user, @asistencia), notice: 'Asistencia was successfully created.' }
@@ -52,6 +53,7 @@ class AsistenciasController < ApplicationController
   # PATCH/PUT /asistencias/1.json
   def update
     respond_to do |format|
+      oe
       @asistencia.counter =  @asistencia.salida - @asistencia.entrada
       if @asistencia.update(asistencia_params)
         format.html { redirect_to empleado_asistencias_path(@user, @asistencia), notice: 'Asistencia was successfully updated.' }
