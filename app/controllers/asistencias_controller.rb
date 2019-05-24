@@ -8,8 +8,13 @@ class AsistenciasController < ApplicationController
     @asistencias = Asistencia.where(user_id: @user.id)
     best_employee = Asistencia.get_best_employee
     worst_employee = Asistencia.get_worst_employee
-    @get_best_employee = User.get_user(best_employee.keys[0])
-    @get_worst_employee = User.get_user(worst_employee.keys[0])
+    if (!best_employee.blank? && !worst_employee.blank?)
+      @get_best_employee = User.get_user(best_employee.keys[0])
+      @get_worst_employee = User.get_user(worst_employee.keys[0])
+    else
+      @get_best_employee = ''
+      @get_worst_employee = ''
+    end
   end
 
   # GET /asistencias/1
@@ -79,6 +84,6 @@ class AsistenciasController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def asistencia_params
-      params.require(:asistencia).permit(:entrada, :salida, :user_id, :counter)
+      params.require(:asistencia).permit(:entrada, :salida, :user_id, :counter, :empleado_id)
     end
 end

@@ -2,12 +2,20 @@
 
 <h1>Asistencias</h1>
 <br>
-<div class="alert alert-success">
-  El empleado que mas horas trabajo fue: <strong><%= @get_best_employee %></strong>
-</div>
-<div class="alert alert-warning">
-  El empleado que menos horas trabajo fue: <strong><%= @get_worst_employee %></strong>
-</div>
+
+<% unless @get_best_employee.blank? && @get_worst_employee.blank? %>
+  <div class="alert alert-success">
+    El empleado que mas horas trabajo fue: <strong><%= @get_best_employee %></strong>
+  </div>
+  <div class="alert alert-warning">
+    El empleado que menos horas trabajo fue: <strong><%= @get_worst_employee %></strong>
+  </div>
+<% else %>
+  <div class="alert alert-light">
+    Aún no se registran asistencias
+  </div>
+<% end %>
+
 
 <table>
   <thead>
