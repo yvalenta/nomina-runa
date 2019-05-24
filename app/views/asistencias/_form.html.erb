@@ -1,0 +1,38 @@
+
+<%= simple_form_for([@user, asistencia], url: empleado_asistencias_path, local: true) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+  <div class="col-sm-4">
+
+    <%= f.input :entrada, as: :date_time_picker, label: 'Ingreso', input_html:
+        {data:
+             {
+                 date_format: "YYYY.MM.DD hh:mm A",
+                 date_day_view_header_format: 'MMM YYYY',
+                 date_side_by_side: true,
+                 date_min_date: Time.current.strftime('%Y-%m-%d')
+             }
+        } %>
+  </div>
+
+  <div class="col-sm-4">
+
+    <%= f.input :salida, as: :date_time_picker, input_html:
+        {data:
+             {
+                 date_format: "YYYY.MM.DD hh:mm A",
+                 date_day_view_header_format: 'MMM YYYY',
+                 date_side_by_side: true,
+                 date_min_date: Time.current.strftime('%Y-%m-%d')
+             }
+        } %>
+
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn btn-outline-success" %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entrada: 2019-05-23 22:42:15
+  salida: 2019-05-23 22:42:15
+  user: one
+  counter: 1
+
+two:
+  entrada: 2019-05-23 22:42:15
+  salida: 2019-05-23 22:42:15
+  user: two
+  counter: 1

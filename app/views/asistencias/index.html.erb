@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Asistencias</h1>
+<br>
+<div class="alert alert-success">
+  El empleado que mas horas trabajo fue: <strong><%= @get_best_employee %></strong>
+</div>
+<div class="alert alert-warning">
+  El empleado que menos horas trabajo fue: <strong><%= @get_worst_employee %></strong>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entrada</th>
+      <th>Salida</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asistencias.each do |asistencia| %>
+      <tr>
+        <td><%= asistencia.entrada.to_formatted_s(:long) %></td>
+        <td><%= asistencia.salida.to_formatted_s(:long) %></td>
+        <td><%= asistencia.user.name%></td>
+        <% if can? :update, asistencia %>
+          <td><%= link_to 'Edit', edit_empleado_asistencia_path(@user, asistencia) %></td>
+        <% end %>
+        <% if can? :delete, asistencia %>
+          <td><%= link_to 'Destroy', empleado_asistencia_path(@user, asistencia), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :create, @asistencia %>
+  <%= link_to 'New Asistencia', new_empleado_asistencia_path %> |
+<% end %>
+ <%= link_to 'Empleados', root_path %>
+
